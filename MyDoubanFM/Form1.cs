@@ -62,9 +62,11 @@ namespace MyDoubanFM
               "coverUrl": "http://img5.douban.com/lpic/s4435637.jpg",
               "id": "1812646",
               "ssid": "317a"}  */
-            webBrowserMain.Document.InvokeScript("myPause");
+            //webBrowserMain.Document.InvokeScript("myPause");
             JObject jo = JObject.Parse(o);
-            string searchurl = SosoUrlPre + HttpUtility.UrlEncode(jo["songName"] + " " + jo["artistName"]);
+            string name = jo["songName"] + " " + jo["artistName"];
+            this.Text = jo["songName"] + " - " + jo["artistName"];
+            string searchurl = SosoUrlPre + HttpUtility.UrlEncode(name);
             SetQqMusicCookie(searchurl);
             webBrowserQQ.Navigate(searchurl);
             _isPlayed = false;
@@ -84,7 +86,7 @@ namespace MyDoubanFM
                 {
                     webBrowserQQ.Document.InvokeScript("myPlay");
                     _isPlayed = true;
-                    webBrowserMain.Document.InvokeScript("myPause");
+                    //webBrowserMain.Document.InvokeScript("myPause");
                 }
             }
         }
