@@ -60,7 +60,7 @@
             this.webBrowserMain.TabIndex = 0;
             this.webBrowserMain.Url = new System.Uri("http://douban.fm/", System.UriKind.Absolute);
             this.webBrowserMain.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowserMain_DocumentCompleted);
-             // 
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -113,7 +113,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1018, 374);
+            this.tabPage2.Size = new System.Drawing.Size(961, 374);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "QQMusic";
             this.tabPage2.UseVisualStyleBackColor = true;

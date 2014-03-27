@@ -31,23 +31,32 @@ namespace MyDoubanFM
             HtmlElement scriptEl = webBrowserMain.Document.CreateElement("script");
             var element = (IHTMLScriptElement)scriptEl.DomElement;
             element.text = @"function test(q) {
-        window.external.ParseSoundInfo(JSON.stringify(q))
-    }
-    function myPause(){
-        DBR.act('pause');
+        window.external.ParseSoundInfo(JSON.stringify(q));
     }
   
-    function show(x, z, y, s, t, q, w, v, r) {
-        var k = {songName: x, artistName: z || '', channelName: y || '', url: s || '', curl: t || '', type: w || y, coverUrl: q || '', id: v, ssid: r};
+    function show(x, z) {
+        var k = {songName: x, artistName: z || ''};
         test(k);
     }
+
+    function addFM(){
+        if (!window.FM){
+            window.FM = {setCurrentSongInfo:show};
+        }else{
+            window.FM.setCurrentSongInfo = show;
+        }
+    }
+
+/*
     var myInt = setInterval(function () {
-        if (FM) {
+        if (window.FM) {
             FM.setCurrentSongInfo = show;
             clearInterval(myInt);
         }
-    }, 100);";
+    }, 100);'
+*/";
             head.AppendChild(scriptEl);
+            webBrowserMain.Document.InvokeScript("addFM");
         }
 
         public void ParseSoundInfo(string o)
