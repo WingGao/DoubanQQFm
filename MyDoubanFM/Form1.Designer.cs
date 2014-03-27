@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.webBrowserMain = new System.Windows.Forms.WebBrowser();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBoxCookie = new System.Windows.Forms.TextBox();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -69,28 +67,6 @@
             this.webBrowserMain.Url = new System.Uri("http://douban.fm/", System.UriKind.Absolute);
             this.webBrowserMain.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowserMain_DocumentCompleted);
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1055, 227);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBoxCookie
-            // 
-            this.textBoxCookie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxCookie.Location = new System.Drawing.Point(1002, 256);
-            this.textBoxCookie.Multiline = true;
-            this.textBoxCookie.Name = "textBoxCookie";
-            this.textBoxCookie.Size = new System.Drawing.Size(128, 153);
-            this.textBoxCookie.TabIndex = 2;
-            this.textBoxCookie.Text = "alert(\'hello\')";
-            // 
             // tabControlMain
             // 
             this.tabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -111,7 +87,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(961, 374);
+            this.tabPage1.Size = new System.Drawing.Size(906, 374);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DoubanFM";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -128,7 +104,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(961, 374);
+            this.tabPage2.Size = new System.Drawing.Size(906, 374);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "QQMusic";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -260,8 +236,6 @@
             this.ClientSize = new System.Drawing.Size(1142, 421);
             this.Controls.Add(this.groupBoxSource);
             this.Controls.Add(this.tabControlMain);
-            this.Controls.Add(this.textBoxCookie);
-            this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "豆瓣+QQ电台 - by WingGao";
@@ -275,15 +249,12 @@
             this.groupBoxSource.ResumeLayout(false);
             this.groupBoxSource.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.WebBrowser webBrowserMain;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBoxCookie;
         private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

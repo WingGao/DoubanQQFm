@@ -31,6 +31,19 @@ namespace MyDoubanFM
             return false;
         }
 
+        public void Stop()
+        {
+            try
+            {
+                Player.Ctlcontrols.pause();
+            }
+            catch
+            {
+                
+            }
+            
+        }
+
         private string Search(string searchstr)
         {
             HttpWebRequest req = WebRequest.CreateHttp(SearchUrl);

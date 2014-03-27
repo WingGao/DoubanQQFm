@@ -76,6 +76,7 @@ namespace MyDoubanFM
             JObject jo = JObject.Parse(o);
             string name = jo["songName"] + " " + jo["artistName"];
             this.Text = jo["songName"] + " - " + jo["artistName"];
+            _netEase.Stop();
             if (rdbQQ.Checked)
             {
                 _qqMusic.Play(name, tbxUid.Text, tbxVer.Text, tbxMinVer.Text);
