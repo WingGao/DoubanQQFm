@@ -35,16 +35,24 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.webBrowserQQ = new System.Windows.Forms.WebBrowser();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbxUid = new System.Windows.Forms.TextBox();
-            this.tbxVer = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tbxMinVer = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tbxVer = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbxUid = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.webBrowserQQ = new System.Windows.Forms.WebBrowser();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.axWindowsMediaPlayerNet = new AxWMPLib.AxWindowsMediaPlayer();
+            this.groupBoxSource = new System.Windows.Forms.GroupBox();
+            this.rdbNet = new System.Windows.Forms.RadioButton();
+            this.rdbQQ = new System.Windows.Forms.RadioButton();
             this.tabControlMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayerNet)).BeginInit();
+            this.groupBoxSource.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowserMain
@@ -64,7 +72,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1072, 148);
+            this.button1.Location = new System.Drawing.Point(1110, 227);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -90,6 +98,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlMain.Controls.Add(this.tabPage1);
             this.tabControlMain.Controls.Add(this.tabPage2);
+            this.tabControlMain.Controls.Add(this.tabPage3);
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
@@ -109,6 +118,12 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.tbxMinVer);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.tbxVer);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.tbxUid);
+            this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.webBrowserQQ);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -117,6 +132,60 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "QQMusic";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tbxMinVer
+            // 
+            this.tbxMinVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxMinVer.Location = new System.Drawing.Point(855, 60);
+            this.tbxMinVer.Name = "tbxMinVer";
+            this.tbxMinVer.Size = new System.Drawing.Size(100, 21);
+            this.tbxMinVer.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(778, 63);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 12);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "miniversion";
+            // 
+            // tbxVer
+            // 
+            this.tbxVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxVer.Location = new System.Drawing.Point(855, 33);
+            this.tbxVer.Name = "tbxVer";
+            this.tbxVer.Size = new System.Drawing.Size(100, 21);
+            this.tbxVer.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(778, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 12);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "version";
+            // 
+            // tbxUid
+            // 
+            this.tbxUid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxUid.Location = new System.Drawing.Point(855, 6);
+            this.tbxUid.Name = "tbxUid";
+            this.tbxUid.Size = new System.Drawing.Size(100, 21);
+            this.tbxUid.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(778, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "ts_uid";
             // 
             // webBrowserQQ
             // 
@@ -127,76 +196,68 @@
             this.webBrowserQQ.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserQQ.Name = "webBrowserQQ";
             this.webBrowserQQ.ScriptErrorsSuppressed = true;
-            this.webBrowserQQ.Size = new System.Drawing.Size(1006, 362);
+            this.webBrowserQQ.Size = new System.Drawing.Size(747, 362);
             this.webBrowserQQ.TabIndex = 0;
             this.webBrowserQQ.Url = new System.Uri("http://music.qq.com/midportal/musichall/#ctime=1395799690.206", System.UriKind.Absolute);
-            this.webBrowserQQ.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowserQQ_DocumentCompleted);
             // 
-            // label1
+            // tabPage3
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1008, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "ts_uid";
+            this.tabPage3.Controls.Add(this.axWindowsMediaPlayerNet);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(961, 374);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "网易云音乐";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tbxUid
+            // axWindowsMediaPlayerNet
             // 
-            this.tbxUid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxUid.Location = new System.Drawing.Point(1085, 40);
-            this.tbxUid.Name = "tbxUid";
-            this.tbxUid.Size = new System.Drawing.Size(100, 21);
-            this.tbxUid.TabIndex = 5;
+            this.axWindowsMediaPlayerNet.Enabled = true;
+            this.axWindowsMediaPlayerNet.Location = new System.Drawing.Point(3, 3);
+            this.axWindowsMediaPlayerNet.Name = "axWindowsMediaPlayerNet";
+            this.axWindowsMediaPlayerNet.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayerNet.OcxState")));
+            this.axWindowsMediaPlayerNet.Size = new System.Drawing.Size(568, 143);
+            this.axWindowsMediaPlayerNet.TabIndex = 0;
             // 
-            // tbxVer
+            // groupBoxSource
             // 
-            this.tbxVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxVer.Location = new System.Drawing.Point(1085, 67);
-            this.tbxVer.Name = "tbxVer";
-            this.tbxVer.Size = new System.Drawing.Size(100, 21);
-            this.tbxVer.TabIndex = 7;
+            this.groupBoxSource.Controls.Add(this.rdbNet);
+            this.groupBoxSource.Controls.Add(this.rdbQQ);
+            this.groupBoxSource.Location = new System.Drawing.Point(1006, 15);
+            this.groupBoxSource.Name = "groupBoxSource";
+            this.groupBoxSource.Size = new System.Drawing.Size(130, 73);
+            this.groupBoxSource.TabIndex = 4;
+            this.groupBoxSource.TabStop = false;
+            this.groupBoxSource.Text = "音源";
             // 
-            // label2
+            // rdbNet
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1008, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 12);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "version";
+            this.rdbNet.AutoSize = true;
+            this.rdbNet.Checked = true;
+            this.rdbNet.Location = new System.Drawing.Point(6, 41);
+            this.rdbNet.Name = "rdbNet";
+            this.rdbNet.Size = new System.Drawing.Size(119, 16);
+            this.rdbNet.TabIndex = 1;
+            this.rdbNet.TabStop = true;
+            this.rdbNet.Text = "网易云音乐(320k)";
+            this.rdbNet.UseVisualStyleBackColor = true;
             // 
-            // tbxMinVer
+            // rdbQQ
             // 
-            this.tbxMinVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxMinVer.Location = new System.Drawing.Point(1085, 94);
-            this.tbxMinVer.Name = "tbxMinVer";
-            this.tbxMinVer.Size = new System.Drawing.Size(100, 21);
-            this.tbxMinVer.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1008, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 12);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "miniversion";
+            this.rdbQQ.AutoSize = true;
+            this.rdbQQ.Location = new System.Drawing.Point(6, 19);
+            this.rdbQQ.Name = "rdbQQ";
+            this.rdbQQ.Size = new System.Drawing.Size(59, 16);
+            this.rdbQQ.TabIndex = 0;
+            this.rdbQQ.Text = "QQ音乐";
+            this.rdbQQ.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1197, 421);
-            this.Controls.Add(this.tbxMinVer);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.tbxVer);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.tbxUid);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBoxSource);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.textBoxCookie);
             this.Controls.Add(this.button1);
@@ -207,6 +268,11 @@
             this.tabControlMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayerNet)).EndInit();
+            this.groupBoxSource.ResumeLayout(false);
+            this.groupBoxSource.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,12 +287,17 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.WebBrowser webBrowserQQ;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbxUid;
-        private System.Windows.Forms.TextBox tbxVer;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbxMinVer;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbxVer;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbxUid;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBoxSource;
+        private System.Windows.Forms.RadioButton rdbNet;
+        private System.Windows.Forms.RadioButton rdbQQ;
+        private System.Windows.Forms.TabPage tabPage3;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayerNet;
     }
 }
 
