@@ -84,7 +84,9 @@ namespace MyDoubanFM
             else
             {
                 _netEase.Player = axWindowsMediaPlayerNet;
-                _netEase.Play(name);
+                //如果网易没有源则使用qq音乐
+                if (!_netEase.Play(name)) 
+                    _qqMusic.Play(name, tbxUid.Text, tbxVer.Text, tbxMinVer.Text);
             }
             
         }

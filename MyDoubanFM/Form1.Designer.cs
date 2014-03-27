@@ -72,7 +72,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1110, 227);
+            this.button1.Location = new System.Drawing.Point(1055, 227);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -84,7 +84,7 @@
             // 
             this.textBoxCookie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxCookie.Location = new System.Drawing.Point(1057, 256);
+            this.textBoxCookie.Location = new System.Drawing.Point(1002, 256);
             this.textBoxCookie.Multiline = true;
             this.textBoxCookie.Name = "textBoxCookie";
             this.textBoxCookie.Size = new System.Drawing.Size(128, 153);
@@ -102,7 +102,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(969, 400);
+            this.tabControlMain.Size = new System.Drawing.Size(914, 400);
             this.tabControlMain.TabIndex = 3;
             // 
             // tabPage1
@@ -205,7 +205,7 @@
             this.tabPage3.Controls.Add(this.axWindowsMediaPlayerNet);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(961, 374);
+            this.tabPage3.Size = new System.Drawing.Size(906, 374);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "网易云音乐";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -221,11 +221,12 @@
             // 
             // groupBoxSource
             // 
+            this.groupBoxSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSource.Controls.Add(this.rdbNet);
             this.groupBoxSource.Controls.Add(this.rdbQQ);
-            this.groupBoxSource.Location = new System.Drawing.Point(1006, 15);
+            this.groupBoxSource.Location = new System.Drawing.Point(964, 12);
             this.groupBoxSource.Name = "groupBoxSource";
-            this.groupBoxSource.Size = new System.Drawing.Size(130, 73);
+            this.groupBoxSource.Size = new System.Drawing.Size(166, 73);
             this.groupBoxSource.TabIndex = 4;
             this.groupBoxSource.TabStop = false;
             this.groupBoxSource.Text = "音源";
@@ -247,16 +248,16 @@
             this.rdbQQ.AutoSize = true;
             this.rdbQQ.Location = new System.Drawing.Point(6, 19);
             this.rdbQQ.Name = "rdbQQ";
-            this.rdbQQ.Size = new System.Drawing.Size(59, 16);
+            this.rdbQQ.Size = new System.Drawing.Size(155, 16);
             this.rdbQQ.TabIndex = 0;
-            this.rdbQQ.Text = "QQ音乐";
+            this.rdbQQ.Text = "QQ音乐（需安装客户端）";
             this.rdbQQ.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1197, 421);
+            this.ClientSize = new System.Drawing.Size(1142, 421);
             this.Controls.Add(this.groupBoxSource);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.textBoxCookie);

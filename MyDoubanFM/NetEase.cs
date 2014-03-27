@@ -18,12 +18,17 @@ namespace MyDoubanFM
     {
         private const string SearchUrl = "http://music.163.com/api/search/pc";
         public AxWindowsMediaPlayer Player;
-        public void Play(string name)
+        public bool Play(string name)
         {
             string resJson = Search(name);
             string mp3Url = ParseResult(resJson);
-            Player.URL = mp3Url;
-            Player.Ctlcontrols.play();
+            if (!string.IsNullOrWhiteSpace(mp3Url))
+            {
+                Player.URL = mp3Url;
+                Player.Ctlcontrols.play();
+                return true;
+            }
+            return false;
         }
 
         private string Search(string searchstr)
