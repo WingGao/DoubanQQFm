@@ -11,5 +11,11 @@
     <Setting Name="QMinVer" Type="System.String" Scope="User">
       <Value Profile="(Default)">23</Value>
     </Setting>
+    <Setting Name="MusicU" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Pid" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

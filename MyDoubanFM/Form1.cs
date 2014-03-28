@@ -24,6 +24,8 @@ namespace MyDoubanFM
             tbxUid.Text = Properties.Settings.Default.Uid;
             tbxVer.Text = Properties.Settings.Default.QVer;
             tbxMinVer.Text = Properties.Settings.Default.QMinVer;
+            tbxMusicU.Text = Properties.Settings.Default.MusicU;
+            tbxPid.Text = Properties.Settings.Default.Pid;
         }
 
         private void webBrowserMain_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -38,6 +40,10 @@ namespace MyDoubanFM
     function show(x, z) {
         var k = {songName: x, artistName: z || ''};
         test(k);
+    }
+
+    function myLike(){
+        DBR.act('love');
     }
 
     function addFM(){
@@ -80,7 +86,6 @@ namespace MyDoubanFM
             if (rdbQQ.Checked)
             {
                 _qqMusic.Play(name, tbxUid.Text, tbxVer.Text, tbxMinVer.Text);
-                SaveSettings();
             }
             else
             {
@@ -89,6 +94,7 @@ namespace MyDoubanFM
                 if (!_netEase.Play(name)) 
                     _qqMusic.Play(name, tbxUid.Text, tbxVer.Text, tbxMinVer.Text);
             }
+            SaveSettings();
             
         }
         private void SaveSettings()
@@ -96,12 +102,22 @@ namespace MyDoubanFM
             Properties.Settings.Default.Uid = tbxUid.Text;
             Properties.Settings.Default.QVer = tbxVer.Text;
             Properties.Settings.Default.QMinVer = tbxMinVer.Text;
+            Properties.Settings.Default.MusicU = tbxMusicU.Text;
+            Properties.Settings.Default.Pid = tbxPid.Text;
             Properties.Settings.Default.Save();
         }
 
-        
-        private void button1_Click(object sender, EventArgs e)
+
+        private void btnLike_Click(object sender, EventArgs e)
         {
+            if (cbxNet.Checked)
+            {
+                tbxLog.Text = _netEase.Like(tbxMusicU.Text, tbxPid.Text);
+            }
+            if (cbxDouban.Checked)
+            {
+                webBrowserMain.Document.InvokeScript("myLike");
+            }
         }
 
        

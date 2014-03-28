@@ -58,5 +58,29 @@ namespace MyDoubanFM.Properties {
                 this["QMinVer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MusicU {
+            get {
+                return ((string)(this["MusicU"]));
+            }
+            set {
+                this["MusicU"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Pid {
+            get {
+                return ((string)(this["Pid"]));
+            }
+            set {
+                this["Pid"] = value;
+            }
+        }
     }
 }
