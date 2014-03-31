@@ -10,27 +10,47 @@ using mshtml;
 
 namespace MyDoubanFM
 {
-    class QQMusic
+    internal class QQMusic
     {
-        private const string SosoUrlPre = "http://soso.music.qq.com/fcgi-bin/music3_new.fcg?p=1&catZhida=1&t=100&portal=client&searchid=1828052434720886076&remoteplace=txt.client.top&utf8=1&w=";
-       
+        private const string SosoUrlPre =
+            "http://soso.music.qq.com/fcgi-bin/music3_new.fcg?p=1&catZhida=1&t=100&portal=client&searchid=1828052434720886076&remoteplace=txt.client.top&utf8=1&w=";
+
         private readonly WebBrowser _browser;
         private bool _isPlayed;
+        private bool _autoStart;
+        private bool _canPlay;
 
         public QQMusic(WebBrowser browser)
         {
             _browser = browser;
             _browser.DocumentCompleted += webBrowserQQ_DocumentCompleted;
-            
         }
 
-        public void Play(string name, string uid, string qver, string qmver)
+        public void Play()
         {
+            if (!_isPlayed)
+            {
+                if (_canPlay)
+                {
+                    _browser.Document.InvokeScript("myPlay");
+                    _isPlayed = true;
+                }
+                else _autoStart = true;
+                //webBrowserMain.Document.InvokeScript("myPause");
+            }
+
+        }
+
+        public void Search(bool auto, string name, string uid, string qver, string qmver)
+        {
+            _autoStart = auto;
             string searchurl = SosoUrlPre + HttpUtility.UrlEncode(name);
-            SetQQMusicCookie(searchurl,uid,qver,qmver);
+            SetQQMusicCookie(searchurl, uid, qver, qmver);
             _browser.Navigate(searchurl);
             _isPlayed = false;
+            _canPlay = false;
         }
+
         private void webBrowserQQ_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             string url = _browser.Url.ToString();
@@ -41,15 +61,10 @@ namespace MyDoubanFM
                 var element = (IHTMLScriptElement)scriptEl.DomElement;
                 element.text = @"function myPlay(){g_player.play(document.getElementsByClassName('btn_play')[0])}";
                 head.AppendChild(scriptEl);
-                if (!_isPlayed)
-                {
-                    _browser.Document.InvokeScript("myPlay");
-                    _isPlayed = true;
-                    //webBrowserMain.Document.InvokeScript("myPause");
-                }
+                _canPlay = true;
             }
+            if (_autoStart) Play();
         }
-
 
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern bool InternetSetCookie(string lpszUrlName, string lbszCookieName, string lpszCookieData);
@@ -59,13 +74,11 @@ namespace MyDoubanFM
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        private void SetQQMusicCookie(string url,string uid, string qver, string qmver)
+        private void SetQQMusicCookie(string url, string uid, string qver, string qmver)
         {
             InternetSetCookie(url, "ts_uid", uid);
             InternetSetCookie(url, "qqmusic_version", qver);
             InternetSetCookie(url, "qqmusic_miniversion", qmver);
         }
-
-
     }
 }

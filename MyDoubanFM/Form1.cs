@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Web;
 using System.Windows.Forms;
@@ -10,16 +11,18 @@ namespace MyDoubanFM
     [ComVisible(true)]
     public partial class Form1 : Form
     {
-        private readonly NetEase _netEase = new NetEase();
+        private NetEase _netEase;
         private QQMusic _qqMusic;
 
         public Form1()
         {
             InitializeComponent();
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             _qqMusic = new QQMusic(webBrowserQQ);
+            _netEase = new NetEase(axWindowsMediaPlayerNet);
             webBrowserMain.ObjectForScripting = this;
             tbxUid.Text = Properties.Settings.Default.Uid;
             tbxVer.Text = Properties.Settings.Default.QVer;
@@ -80,23 +83,31 @@ namespace MyDoubanFM
               "ssid": "317a"}  */
             //webBrowserMain.Document.InvokeScript("myPause");
             JObject jo = JObject.Parse(o);
-            string name = jo["songName"] + " " + jo["artistName"];
-            this.Text = jo["songName"] + " - " + jo["artistName"];
+            //            string song = (string)jo["songName"];
+            //            string artist = (string)jo["artistName"];
+            string song = "50 Ways To Say Goodbye";
+            string artist = "Train";
+            this.Text = song + " - " + artist;
             _netEase.Stop();
-            if (rdbQQ.Checked)
+            _qqMusic.Search(rdbQQ.Checked, song + " " + artist, tbxUid.Text, tbxVer.Text, tbxMinVer.Text);
+            _netEase.Search(song, artist, tbxMusicU.Text);
+            ShowNetResult();
+            if (rdbNet.Checked)
             {
-                _qqMusic.Play(name, tbxUid.Text, tbxVer.Text, tbxMinVer.Text);
-            }
-            else
-            {
-                _netEase.Player = axWindowsMediaPlayerNet;
                 //如果网易没有源则使用qq音乐
-                if (!_netEase.Play(name)) 
-                    _qqMusic.Play(name, tbxUid.Text, tbxVer.Text, tbxMinVer.Text);
+                if (!_netEase.Play())
+                    _qqMusic.Play();
             }
             SaveSettings();
-            
+            tbxLog.Text = "";
         }
+
+        private void ShowNetResult()
+        {
+            lsbNetSongs.Items.Clear();
+            lsbNetSongs.Items.AddRange(_netEase.GetResults());
+        }
+
         private void SaveSettings()
         {
             Properties.Settings.Default.Uid = tbxUid.Text;
@@ -120,12 +131,14 @@ namespace MyDoubanFM
             }
         }
 
-       
+        private void lsbNetSongs_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lsbNetSongs.IndexFromPoint(e.Location);
+            if (index > -1)
+            {
+                _netEase.Play(index);
+            }
+        }
 
-
-
-
-
-        
     }
 }

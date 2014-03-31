@@ -41,16 +41,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.webBrowserQQ = new System.Windows.Forms.WebBrowser();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lsbNetSongs = new System.Windows.Forms.ListBox();
+            this.tbxPid = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbxMusicU = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.axWindowsMediaPlayerNet = new AxWMPLib.AxWindowsMediaPlayer();
             this.groupBoxSource = new System.Windows.Forms.GroupBox();
             this.rdbNet = new System.Windows.Forms.RadioButton();
             this.rdbQQ = new System.Windows.Forms.RadioButton();
-            this.tbxMusicU = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnLike = new System.Windows.Forms.Button();
             this.tbxLog = new System.Windows.Forms.TextBox();
-            this.tbxPid = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.cbxDouban = new System.Windows.Forms.CheckBox();
             this.cbxNet = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -188,6 +189,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.lsbNetSongs);
             this.tabPage3.Controls.Add(this.tbxPid);
             this.tabPage3.Controls.Add(this.label5);
             this.tabPage3.Controls.Add(this.tbxMusicU);
@@ -199,6 +201,54 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "网易云音乐";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lsbNetSongs
+            // 
+            this.lsbNetSongs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lsbNetSongs.FormattingEnabled = true;
+            this.lsbNetSongs.ItemHeight = 12;
+            this.lsbNetSongs.Location = new System.Drawing.Point(3, 157);
+            this.lsbNetSongs.Name = "lsbNetSongs";
+            this.lsbNetSongs.Size = new System.Drawing.Size(568, 208);
+            this.lsbNetSongs.TabIndex = 16;
+            this.lsbNetSongs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lsbNetSongs_MouseDoubleClick);
+            // 
+            // tbxPid
+            // 
+            this.tbxPid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxPid.Location = new System.Drawing.Point(778, 43);
+            this.tbxPid.Name = "tbxPid";
+            this.tbxPid.Size = new System.Drawing.Size(125, 21);
+            this.tbxPid.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(725, 46);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(23, 12);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "pid";
+            // 
+            // tbxMusicU
+            // 
+            this.tbxMusicU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxMusicU.Location = new System.Drawing.Point(778, 16);
+            this.tbxMusicU.Name = "tbxMusicU";
+            this.tbxMusicU.Size = new System.Drawing.Size(125, 21);
+            this.tbxMusicU.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(725, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 12);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "MUSIC_U";
             // 
             // axWindowsMediaPlayerNet
             // 
@@ -243,24 +293,6 @@
             this.rdbQQ.Text = "QQ音乐（需安装客户端）";
             this.rdbQQ.UseVisualStyleBackColor = true;
             // 
-            // tbxMusicU
-            // 
-            this.tbxMusicU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxMusicU.Location = new System.Drawing.Point(778, 16);
-            this.tbxMusicU.Name = "tbxMusicU";
-            this.tbxMusicU.Size = new System.Drawing.Size(125, 21);
-            this.tbxMusicU.TabIndex = 13;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(725, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 12);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "MUSIC_U";
-            // 
             // btnLike
             // 
             this.btnLike.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -281,24 +313,6 @@
             this.tbxLog.Name = "tbxLog";
             this.tbxLog.Size = new System.Drawing.Size(166, 191);
             this.tbxLog.TabIndex = 15;
-            // 
-            // tbxPid
-            // 
-            this.tbxPid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxPid.Location = new System.Drawing.Point(778, 43);
-            this.tbxPid.Name = "tbxPid";
-            this.tbxPid.Size = new System.Drawing.Size(125, 21);
-            this.tbxPid.TabIndex = 15;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(725, 46);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 12);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "pid";
             // 
             // cbxDouban
             // 
@@ -326,6 +340,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.cbxNet);
             this.groupBox1.Controls.Add(this.btnLike);
             this.groupBox1.Controls.Add(this.cbxDouban);
@@ -392,6 +407,7 @@
         private System.Windows.Forms.CheckBox cbxDouban;
         private System.Windows.Forms.CheckBox cbxNet;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox lsbNetSongs;
     }
 }
 

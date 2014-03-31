@@ -21,71 +21,106 @@ namespace MyDoubanFM
         private const string MainUrl = "http://music.163.com";
         private const string SearchUrl = MainUrl + "/api/search/pc";
         private const string PlistManipulate = MainUrl + "/api/playlist/manipulate/tracks";
-        public AxWindowsMediaPlayer Player;
+        private readonly AxWindowsMediaPlayer _player;
         private string _nowSongId;
-        public bool Play(string name)
+        private JToken _resultJToken;
+        private bool _secondSearch = false;
+
+        public NetEase(AxWindowsMediaPlayer player)
         {
-            string resJson = Search(name);
-            string mp3Url = ParseResult(resJson);
-            if (!string.IsNullOrWhiteSpace(mp3Url))
+            _player = player;
+            _player.settings.volume = 100;
+
+        }
+        public bool Play()
+        {
+            if (GetResultsCount() > 0)
             {
-                Player.URL = mp3Url;
-                Player.Ctlcontrols.play();
+                Play(0);
                 return true;
             }
             return false;
         }
 
+        public void Play(int index)
+        {
+            JToken song = _resultJToken["songs"][index];
+            _player.URL = GetMusic320(song);
+            _player.Ctlcontrols.play();
+        }
+
+
         public void Stop()
         {
             try
             {
-                Player.Ctlcontrols.pause();
+                _player.Ctlcontrols.pause();
             }
             catch
             {
-                
+
             }
-            
+
         }
 
-        private string Search(string searchstr)
+        public void Search(string name, string artist,string musicu)
         {
             HttpWebRequest req = WebRequest.CreateHttp(SearchUrl);
             req.Method = "POST";
             req.CookieContainer = new CookieContainer();
-            req.CookieContainer.Add(new Uri(SearchUrl),new Cookie("os","pc"));
+            req.CookieContainer.Add(new Uri(SearchUrl), new Cookie("os", "pc"));
+            req.CookieContainer.Add(new Uri(SearchUrl), new Cookie("MUSIC_U", musicu));
             req.ContentType = "application/x-www-form-urlencoded";
             using (Stream postStream = req.GetRequestStream())
             {
 
-                byte[] postBytes = new ASCIIEncoding().GetBytes("offset=0&total=true&limit=100&type=1&s=" + HttpUtility.UrlEncode(searchstr));
+                byte[] postBytes = new ASCIIEncoding().GetBytes("offset=0&total=true&limit=100&type=1&s=" + HttpUtility.UrlEncode((name + " " + artist).Trim()));
                 postStream.Write(postBytes, 0, postBytes.Length);
             }
             using (var reader = new StreamReader(req.GetResponse().GetResponseStream()))
             {
-                return reader.ReadToEnd();
+                ParseResult(reader.ReadToEnd());
+                if (GetResultsCount() == 0 && !_secondSearch)
+                {
+                    _secondSearch = true;
+                    Search(name, "",musicu);
+                }
+                else _secondSearch = false;
             }
         }
 
-        private string ParseResult(string resJson)
+        private void ParseResult(string resJson)
         {
-            JObject jo = (JObject) JObject.Parse(resJson)["result"];
+            _resultJToken = JObject.Parse(resJson)["result"];
+        }
 
-            if ((int)jo["songCount"] > 0)
-            {
-                JToken song = jo["songs"].First;
-                Debug.WriteLine(song);
-                _nowSongId = (string) song["id"];
-                JToken jt = song["hMusic"];
-                string dfsId = (string) jt["dfsId"];
-                string extension = (string) jt["extension"];
-                string encryptPath = EncryptId(dfsId);
-                string url = string.Format("http://m2.music.126.net/{0}/{1}.{2}", encryptPath, dfsId, extension);
-                return url;
-            }
-            _nowSongId = null;
-            return null;
+        private int GetResultsCount()
+        {
+            return (int)_resultJToken["songCount"];
+        }
+
+        public string[] GetResults()
+        {
+            if (GetResultsCount() > 0)
+                return
+                    _resultJToken["songs"].Select(
+                        t =>
+                            string.Format("{0} - {1} - 《{2}》", t["name"], t["artists"][0]["name"],
+                                t["album"]["name"]))
+                        .ToArray();
+            return new string[0];
+        }
+
+        private string GetMusic320(JToken song)
+        {
+            Debug.WriteLine(song);
+            _nowSongId = (string)song["id"];
+            JToken jt = song["hMusic"];
+            string dfsId = (string)jt["dfsId"];
+            string extension = (string)jt["extension"];
+            string encryptPath = EncryptId(dfsId);
+            string url = string.Format("http://m2.music.126.net/{0}/{1}.{2}", encryptPath, dfsId, extension);
+            return url;
         }
 
         private string EncryptId(string dfsId)
@@ -94,7 +129,7 @@ namespace MyDoubanFM
             byte[] bytes1 = encoding.GetBytes("3go8&$8*3*3h0k(2)2");
             byte[] bytes2 = encoding.GetBytes(dfsId);
             for (int i = 0; i < bytes2.Length; i++)
-                bytes2[i] = (byte) (bytes2[i] ^ bytes1[i%bytes1.Length]);
+                bytes2[i] = (byte)(bytes2[i] ^ bytes1[i % bytes1.Length]);
             using (MD5 md5Hash = MD5.Create())
             {
                 string res = Convert.ToBase64String(md5Hash.ComputeHash(bytes2));
@@ -103,10 +138,7 @@ namespace MyDoubanFM
             }
         }
 
-
-
-
-        public string Like(string musicu,string pid) 
+        public string Like(string musicu, string pid)
         {
             if (!string.IsNullOrWhiteSpace(_nowSongId))
             {
@@ -115,7 +147,7 @@ namespace MyDoubanFM
             return null;
         }
 
-        private static string PlistOpr(bool isLike,string musicu,string pid,string sid)
+        private static string PlistOpr(bool isLike, string musicu, string pid, string sid)
         {
             HttpWebRequest req = WebRequest.CreateHttp(PlistManipulate);
             req.Method = "POST";
