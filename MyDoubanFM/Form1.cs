@@ -83,10 +83,10 @@ namespace MyDoubanFM
               "ssid": "317a"}  */
             //webBrowserMain.Document.InvokeScript("myPause");
             JObject jo = JObject.Parse(o);
-            //            string song = (string)jo["songName"];
-            //            string artist = (string)jo["artistName"];
-            string song = "50 Ways To Say Goodbye";
-            string artist = "Train";
+            string song = (string)jo["songName"];
+            string artist = (string)jo["artistName"];
+            //            string song = "50 Ways To Say Goodbye";
+            //            string artist = "Train";
             this.Text = song + " - " + artist;
             _netEase.Stop();
             _qqMusic.Search(rdbQQ.Checked, song + " " + artist, tbxUid.Text, tbxVer.Text, tbxMinVer.Text);

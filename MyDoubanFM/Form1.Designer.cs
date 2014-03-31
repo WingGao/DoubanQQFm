@@ -362,7 +362,7 @@
             this.Controls.Add(this.tabControlMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "豆瓣+QQ电台 - by WingGao";
+            this.Text = "豆瓣电台助手 - by WingGao - V0.2";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControlMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

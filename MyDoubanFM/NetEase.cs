@@ -45,7 +45,8 @@ namespace MyDoubanFM
         public void Play(int index)
         {
             JToken song = _resultJToken["songs"][index];
-            _player.URL = GetMusic320(song);
+            string url320 = GetMusic320(song);
+            _player.URL = string.IsNullOrWhiteSpace(url320) ? GetMusic96(song) : url320;
             _player.Ctlcontrols.play();
         }
 
@@ -63,7 +64,7 @@ namespace MyDoubanFM
 
         }
 
-        public void Search(string name, string artist,string musicu)
+        public void Search(string name, string artist, string musicu)
         {
             HttpWebRequest req = WebRequest.CreateHttp(SearchUrl);
             req.Method = "POST";
@@ -83,7 +84,7 @@ namespace MyDoubanFM
                 if (GetResultsCount() == 0 && !_secondSearch)
                 {
                     _secondSearch = true;
-                    Search(name, "",musicu);
+                    Search(name, "", musicu);
                 }
                 else _secondSearch = false;
             }
@@ -115,12 +116,21 @@ namespace MyDoubanFM
         {
             Debug.WriteLine(song);
             _nowSongId = (string)song["id"];
-            JToken jt = song["hMusic"];
-            string dfsId = (string)jt["dfsId"];
-            string extension = (string)jt["extension"];
-            string encryptPath = EncryptId(dfsId);
-            string url = string.Format("http://m2.music.126.net/{0}/{1}.{2}", encryptPath, dfsId, extension);
-            return url;
+            JToken hToken = song["hMusic"];
+            if (hToken.Type != JTokenType.Null)
+            {
+                string dfsId = (string)hToken["dfsId"];
+                string extension = (string)hToken["extension"];
+                string encryptPath = EncryptId(dfsId);
+                string url = string.Format("http://m2.music.126.net/{0}/{1}.{2}", encryptPath, dfsId, extension);
+                return url;
+            }
+            return null;
+        }
+
+        private string GetMusic96(JToken song)
+        {
+            return (string)song["mp3Url"];
         }
 
         private string EncryptId(string dfsId)
